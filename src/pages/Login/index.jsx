@@ -1,33 +1,66 @@
+import { useState } from 'react';
+
 const LoginPage = () => {
+    const [login, setLogin] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = (e) => {
+        setLogin(e.target.value);
+    };
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const handleSignIn = (e) => {
+        e.preventDefault();
+
+        fetch('https://dummyjson.com/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: 'emilys',
+                password: 'emilyspass',
+                expiresInMins: 10, // optional, defaults to 60
+            }),
+        })
+            .then((res) => res.json())
+            .then(console.log);
+    };
+
     return (
-        <div className="w-full h-screen bg-gray-600 flex flex-col items-center justify-center text-gray-200">
-            <h1 className="text-center text-2xl mb-5">Supa React Login</h1>
-            <form className="flex flex-col gap-y-4 w-[400px]">
-                <div className="flex flex-col gap-y-1">
-                    <label className="block" htmlFor="login">
+        <div className='w-full h-screen bg-gray-600 flex flex-col items-center justify-center text-gray-200'>
+            <h1 className='text-center text-2xl mb-5'>Supa React Login</h1>
+            <form className='flex flex-col gap-y-4 w-[400px]' onSubmit={handleSignIn}>
+                <div className='flex flex-col gap-y-1'>
+                    <label className='block' htmlFor='login'>
                         Username
                     </label>
                     <input
-                        className="block outline-none border-none text-black py-2 px-3"
-                        type="text"
-                        name="login"
-                        id="login"
+                        className='block outline-none border-none text-black py-2 px-3'
+                        type='text'
+                        name='login'
+                        id='login'
+                        value={login}
+                        onChange={handleLogin}
                     />
                 </div>
-                <div className="flex flex-col gap-y-1">
-                    <label className="block" htmlFor="password">
+                <div className='flex flex-col gap-y-1'>
+                    <label className='block' htmlFor='password'>
                         Password
                     </label>
                     <input
-                        className="block outline-none border-none text-black py-2 px-3"
-                        type="password"
-                        name="password"
-                        id="password"
+                        className='block outline-none border-none text-black py-2 px-3'
+                        type='password'
+                        name='password'
+                        id='password'
+                        value={password}
+                        onChange={handlePassword}
                     />
                 </div>
                 <button
-                    className="block w-full p-2 text-center text-white bg-violet-600 uppercase font-bold"
-                    type="submit"
+                    className='block w-full p-2 text-center text-white bg-violet-600 uppercase font-bold'
+                    type='submit'
                 >
                     login
                 </button>

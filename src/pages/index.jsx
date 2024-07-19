@@ -1,15 +1,15 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "@/pages/Home";
-import LoginPage from "@/pages/Login";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from '@/pages/Home';
+import LoginPage from '@/pages/Login';
 
 const Router = () => {
     const routes = [
         {
-            url: "/",
+            url: '/',
             page: <HomePage />,
         },
         {
-            url: "/login",
+            url: '/login',
             page: <LoginPage />,
         },
     ];
