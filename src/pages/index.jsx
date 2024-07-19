@@ -9,7 +9,7 @@ const Router = () => {
             page: <HomePage />,
         },
         {
-            url: "/auth",
+            url: "/login",
             page: <LoginPage />,
         },
     ];
